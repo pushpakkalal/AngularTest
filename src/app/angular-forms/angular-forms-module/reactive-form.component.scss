@@ -1,0 +1,41 @@
+@import '../../../assets/styles/vendors/vendors';
+// helpers
+@import '../../../assets/styles/helper/function';
+@import '../../../assets/styles/helper/mixins';
+@import '../../../assets/styles/helper/variabls';
+// partials
+@import '../../../assets/styles/partial/reset';
+@import '../../../assets/styles/partial/typography.scss';
+@import '../../../assets/styles/partial/placeholder';
+// pages
+@import '../../../assets/styles/pages/global';
+.form-group {
+    .label {
+        strong {
+            font-weight: bold;
+        }
+    }
+    .is-invalid {
+        &~.invalid-feedback {
+            display: block;
+            color: #dc3545;
+        }
+    }
+    .radio-inline,
+    .checkbox-inline {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        input[type="radio"] {
+            position: relative;
+            top: 2px;
+        }
+        .radio-label,
+        .checkbox-label {
+            font-size: 16px;
+            color: #252525;
+            display: inline-block;
+            margin: 0 10px;
+        }
+    }
+}

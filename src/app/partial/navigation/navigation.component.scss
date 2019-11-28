@@ -1,0 +1,85 @@
+@import '../../../assets/styles/vendors/vendors';
+// helpers
+@import '../../../assets/styles/helper/function';
+@import '../../../assets/styles/helper/mixins';
+@import '../../../assets/styles/helper/variabls';
+// partials
+@import '../../../assets/styles/partial/reset';
+@import '../../../assets/styles/partial/typography.scss';
+@import '../../../assets/styles/partial/placeholder';
+// pages
+@import '../../../assets/styles/pages/global';
+.nav {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    li {
+        width: auto;
+        margin: 0;
+        padding: 21px 0;
+        position: relative;
+        a {
+            @extend .pt-sanse-regular;
+            font-size: 16px;
+            line-height: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 10px;
+            margin: 0;
+            color: #ffffff;
+            text-decoration: none;
+            @include hoverActiveFocus {
+                text-decoration: none;
+                color: red;
+            }
+        }
+    }
+    ul {
+        display: none;
+    }
+    li {
+        &:hover,
+        &:focus {
+            ul {
+                display: block;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                width: 200px;
+                max-height: 1000px;
+                @include abs-pos(100%, null, null, 0);
+                margin: 0;
+                padding: 0;
+                background-color: #f1f1f1;
+                @include border-bottom-radius(5px);
+                z-index: 2;
+                li {
+                    width: 100%;
+                    margin: 0;
+                    padding: 0;
+                    border-bottom: 1px solid #dddddd;
+                    &:last-child {
+                        border-bottom: 0;
+                    }
+                    a {
+                        @extend .pt-sanse-regular;
+                        font-size: 16px;
+                        line-height: 24px;
+                        text-transform: uppercase;
+                        text-align: left;
+                        padding: 10px;
+                        margin: 0;
+                        color: #252525;
+                        text-decoration: none;
+                        width: 100%;
+                        display: inline-block;
+                        @include hoverActiveFocus {
+                            text-decoration: none;
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

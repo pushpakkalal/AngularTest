@@ -1,0 +1,265 @@
+<form name="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="card my-2 pt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <b>Add People: Using Reactive Form with FormGroup Directive example</b>
+                </div>
+                <div class="card-body">
+                    <!-- create form control using form group  directive -->
+                    <div class="row" [formGroup]="presonalForm">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="firstName" class="label mb-1"><strong>First Name:</strong>&nbsp;&nbsp;<span>{{pf.firstName.value}}</span></label>
+                                <input type="text" name="firstName" class="form-control" id="firstName" formControlName="firstName" required [ngClass]="{'is-invalid': submitted && pf.firstName?.errors}">
+                                <div *ngIf="pf.firstName?.errors && (pf.firstName.dirty || pf.firstName.touched)" class="invalid-feedback">
+                                    <div *ngIf="pf.firstName?.errors.required">First Name is required.</div>
+                                    <div *ngIf="pf.firstName?.errors.pattern">First name is invalid.</div>
+                                    <div *ngIf="pf.firstName?.errors.minlength && !pf.firstName?.errors.pattern && !pf.firstName?.errors.forbiddenName">first Name must be as least 10 characters</div>
+                                    <div *ngIf="pf.firstName?.errors.maxlength && !pf.firstName?.errors.pattern">Maximun 10 characters allowed in first Name</div>
+                                    <div *ngIf="pf.firstName?.errors.forbiddenName">Name cannot be Bob.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="lastName" class="label mb-1"><strong>Last Name:</strong>&nbsp;&nbsp;<span>{{pf.lastName.value}}</span></label>
+                                <input type="text" name="lastName" class="form-control" id="lastName" formControlName="lastName" required [ngClass]="{'is-invalid': submitted && pf.lastName?.errors}">
+                                <div *ngIf="pf.lastName?.errors && (pf.lastName.dirty || pf.lastName.touched)" class="invalid-feedback">
+                                    <div *ngIf="pf.lastName?.errors.required">Last Name is required.</div>
+                                    <div *ngIf="pf.lastName?.errors.pattern">Last Name is invalid.</div>
+                                    <div *ngIf="pf.lastName?.errors.minlength && !pf.lastName?.errors.pattern">Last Name must be as least 10 characters</div>
+                                    <div *ngIf="pf.lastName?.errors.maxlength && !pf.lastName?.errors.pattern">Maximun 10 characters allowed in Last Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label mb-1" for="emailfield"><strong>Email:</strong>&nbsp;&nbsp;<span>{{pf.emailfield.value}}</span></label>
+                                <input type="email" name="emailfield" id="emailfield" class="form-control" formControlName="emailfield" required [ngClass]="{'is-invalid': submitted && pf.emailfield?.errors}">
+                                <div *ngIf="pf.emailfield?.errors && (pf.emailfield.dirty || pf.emailfield.touched)" class="invalid-feedback">
+                                    <div *ngIf="pf.emailfield?.errors.required">Email is required.</div>
+                                    <div *ngIf="pf.emailfield?.errors.email">Email is invalid.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label mb-1" for="phonefield"><strong>Phone Number:</strong>&nbsp;&nbsp;<span>{{pf.phonefield.value}}</span></label>
+                                <input type="text" name="phonefield" id="phonefield" class="form-control" formControlName="phonefield" required [ngClass]="{'is-invalid': submitted && pf.phonefield?.errors}">
+                                <div *ngIf="pf.phonefield?.errors && (pf.phonefield.dirty || pf.phonefield.touched)" class="invalid-feedback">
+                                    <div *ngIf="pf.phonefield?.errors.required">Phone number is required.</div>
+                                    <div *ngIf="pf.phonefield?.errors.pattern">Phone number is invalid.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" formGroupName="address">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="countryfield"><strong>Country:</strong>&nbsp;&nbsp;<span>{{pf.address.controls.statefield.value}}</span></label>
+                                        <select id="countryfield" class="form-control" formControlName="countryfield" required [ngClass]="{'is-invalid': submitted && pf.address.controls.countryfield?.errors}">
+                                            <option value="0" disabled selected>Choose a Country</option>
+                                            <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                                        </select>
+                                        <div *ngIf="pf.address.controls.countryfield?.errors && (pf.address.controls.countryfield.dirty || pf.address.controls.countryfield.touched)" class="invalid-feedback">
+                                            <div *ngIf="pf.address.controls.countryfield?.errors.required">Country Name is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="statefield"><strong>State:</strong>&nbsp;&nbsp;<span>{{pf.address.controls.statefield.value}}</span></label>
+                                        <select name="statefield" id="statefield" class="form-control" formControlName="statefield" required [ngClass]="{'is-invalid': submitted && pf.address.controls.statefield?.errors}">
+                                                <option value="0" disabled selected>Choose a State</option>
+                                                <option *ngFor="let state of states" [value]="state">{{state}}</option>
+                                            </select>
+                                        <div *ngIf="pf.address.controls.statefield?.errors && (pf.address.controls.statefield.dirty || pf.address.controls.statefield.touched)" class="invalid-feedback">
+                                            <div *ngIf="pf.address.controls.statefield?.errors.required">State Name is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="cityfield"><strong>City:</strong>&nbsp;&nbsp;<span>{{pf.address.controls.cityfield.value}}</span></label>
+                                        <input type="text" name="cityfield" id="cityfield" class="form-control" formControlName="cityfield" required [ngClass]="{'is-invalid': submitted && pf.address.controls.cityfield?.errors}">
+                                        <div *ngIf="pf.address.controls.cityfield?.errors && (pf.address.controls.cityfield.dirty || pf.address.controls.cityfield.touched)" class="invalid-feedback">
+                                            <div *ngIf="pf.address.controls.cityfield?.errors.required">City Name is required.</div>
+                                            <div *ngIf="pf.address.controls.cityfield?.errors.pattern">City Name is invalid.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="streetfield"><strong>Street:</strong>&nbsp;&nbsp;<span>{{pf.address.controls.streetfield.value}}</span></label>
+                                        <input type="text" name="streetfield" id="streetfield" class="form-control" formControlName="streetfield" required [ngClass]="{'is-invalid': submitted && pf.address.controls.streetfield?.errors}">
+                                        <div *ngIf="pf.address.controls.streetfield?.errors && (pf.address.controls.streetfield.dirty || pf.address.controls.streetfield.touched)" class="invalid-feedback">
+                                            <div *ngIf="pf.address.controls.streetfield?.errors.required">Street is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="zipfield"><strong>Zip Code:</strong>&nbsp;&nbsp;<span>{{pf.address.controls.zipfield.value}}</span></label>
+                                        <input type="text" name="zipfield" id="zipfield" class="form-control" formControlName="zipfield" required [ngClass]="{'is-invalid': submitted && pf.address.controls.zipfield?.errors}">
+                                        <div *ngIf="pf.address.controls.zipfield?.errors && (pf.address.controls.zipfield.dirty || pf.address.controls.zipfield.touched)" class="invalid-feedback">
+                                            <div *ngIf="pf.address.controls.zipfield?.errors.required">Zip Code is required.</div>
+                                            <div *ngIf="pf.address.controls.zipfield?.errors.pattern">Zip Code is invalid.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card my-3">
+                <div class="card-header">
+                    <strong>Add Employee: Using Reactive Form with FormBuilder Directive example</strong>
+                </div>
+                <div class="card-body">
+                    <!-- create form control FormBuilder -->
+                    <div class="row" [formGroup]="empForm">
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="label mb-1" for="empNameField"><strong>Employee Name:</strong>&nbsp;&nbsp;<span>{{empf.empNameField.value}}</span></label>
+                                <input type="text" id="empNameField" class="form-control" formControlName="empNameField" required [ngClass]="{ 'is-invalid': submitted && empf.empNameField?.errors }">
+                                <div *ngIf="empf.empNameField?.errors && (empf.empNameField.dirty || empf.empNameField.touched)" class="invalid-feedback">
+                                    <div *ngIf="empf.empNameField?.errors.required">Employee Name Name is required.</div>
+                                    <div *ngIf="empf.empNameField?.errors.pattern">Employee Name is invalid.</div>
+                                    <div *ngIf="empf.empNameField?.errors.minlength && !empf.empNameField?.errors.pattern">Employee Name must be as least 10 characters</div>
+                                    <div *ngIf="empf.empNameField?.errors.maxlength  && !empf.empNameField?.errors.pattern">Maximun 10 characters allowed in Employee Name</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label class="label mb-1" for="empIdField"><strong>Employee Id:</strong>&nbsp;&nbsp;<span>{{empf.empIdField.value}}</span></label>
+                                <input type="text" name="empIdField" id="empIdField" class="form-control" formControlName="empIdField" required [ngClass]="{'is-invalid': submitted && empf.empIdField?.errors}">
+                                <div *ngIf="empf.empIdField?.errors && (empf.empIdField.dirty || empf.empIdField.touched)" class="invalid-feedback">
+                                    <div *ngIf="empf.empIdField?.errors.required">Employee Id is required.</div>
+                                    <div *ngIf="empf.empIdField?.errors.pattern">Employee Id is invalid.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" formGroupName="empAddress">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="empcountryField"><strong>Employee Country:</strong>&nbsp;&nbsp;<span>{{empf.empAddress.controls.empcountryField.value}}</span></label>
+                                        <select name="empcountryField" id="empcountryField" class="form-control" formControlName="empcountryField" required [ngClass]="{'is-invalid': submitted && empf.empAddress.controls.empcountryField?.errors}">
+                                                <option value="0" disabled selected>Choose a Country</option>
+                                                <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                                        </select>
+                                        <div *ngIf="empf.empAddress.controls.empcountryField?.errors && (empf.empAddress.controls.empcountryField.dirty || empf.empAddress.controls.empcountryField.touched)" class="invalid-feedback">
+                                            <div *ngIf="empf.empAddress.controls.empcountryField?.errors.required">Employee Country is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="empstateField"><strong>Employee State:</strong>&nbsp;&nbsp;<span>{{empf.empAddress.controls.empstateField.value}}</span></label>
+                                        <select name="empstateField" id="empstateField" class="form-control" formControlName="empstateField" required [ngClass]="{'is-invalid': submitted && empf.empAddress.controls.empstateField?.errors}">
+                                            <option value="0" disabled selected>Choose a State</option>
+                                            <option *ngFor="let state of states" [value]="state">{{state}}</option>
+                                        </select>
+                                        <div *ngIf="empf.empAddress.controls.empstateField?.errors && (empf.empAddress.controls.empstateField.dirty || empf.empAddress.controls.empstateField.touched)" class="invalid-feedback">
+                                            <div *ngIf="empf.empAddress.controls.empstateField?.errors.required">Employee State is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="empcityField"><strong>Employee City:</strong>&nbsp;&nbsp;<span>{{empf.empAddress.controls.empcityField.value}}</span></label>
+                                        <select name="empcityField" id="empcityField" class="form-control" formControlName="empcityField" required [ngClass]="{'is-invalid': submitted && empf.empAddress.controls.empcityField?.errors}">
+                                            <option value="0" disabled selected>Choose a City</option>
+                                            <option *ngFor="let city of cities" [value]="city">{{city}}</option>
+                                        </select>
+                                        <div *ngIf="empf.empAddress.controls.empcityField?.errors && (empf.empAddress.controls.empcityField.dirty || empf.empAddress.controls.empcityField.touched)" class="invalid-feedback">
+                                            <div *ngIf="empf.empAddress.controls.empcityField?.errors.required">Employee City is required.</div>
+                                            <div *ngIf="empf.empAddress.controls.empcityField?.errors.pattern">Employee City is invalid.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="empstreetField"><strong>Employee Street:</strong>&nbsp;&nbsp;<span>{{empf.empAddress.controls.empstreetField.value}}</span></label>
+                                        <input type="text" name="empstreetField" id="empstreetField" class="form-control" formControlName="empstreetField" required [ngClass]="{'is-invalid': submitted && empf.empAddress.controls.empstreetField?.errors}">
+                                        <div *ngIf="empf.empAddress.controls.empstreetField?.errors && (empf.empAddress.controls.empstreetField.dirty || empf.empAddress.controls.empstreetField.touched)" class="invalid-feedback">
+                                            <div *ngIf="empf.empAddress.controls.empstreetField?.errors.required">Employee Street is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label class="label mb-1" for="empzipField"><strong>Employee Zip:</strong>&nbsp;&nbsp;<span>{{empf.empAddress.controls.empzipField.value}}</span></label>
+                                        <input type="text" name="empzipField" id="empzipField" class="form-control" formControlName="empzipField" required [ngClass]="{'is-invalid': submitted && empf.empAddress.controls.empzipField?.errors}">
+                                        <div *ngIf="empf.empAddress.controls.empzipField?.errors && (empf.empAddress.controls.empzipField.dirty || empf.empAddress.controls.empzipField.touched)" class="invalid-feedback">
+                                            <div *ngIf="empf.empAddress.controls.empzipField?.errors.required">Employee Zip Code is required.</div>
+                                            <div *ngIf="empf.empAddress.controls.empzipField?.errors.pattern">Employee Zip Code is invalid.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="label mb-1" for="empPhoneField"><strong>Employee Phone Number:</strong>&nbsp;&nbsp;<span>{{empf.empPhoneField.value}}</span></label>
+                                <input type="text" name="empPhoneField" id="empPhoneField" class="form-control" formControlName="empPhoneField" [ngClass]="{'is-invalid': submitted && empf.empPhoneField?.errors}">
+                                <div *ngIf="empf.empPhoneField?.errors && (empf.empPhoneField.dirty || empf.empPhoneField.touched)" class="invalid-feedback">
+                                    <div *ngIf="empf.empPhoneField?.errors.required">Employee Phone Number is required.</div>
+                                    <div *ngIf="empf.empPhoneField?.errors.pattern">Employee Phone Number is invalid.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" formArrayName="empskills" *ngFor="let empskill of empForm.get('empskills').controls; let i = index;">
+                            <div [formGroupName]="i">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="label mb-1" [for]="'empskilllanguage' + i"><strong>Skills Language:</strong>&nbsp;&nbsp; <span>{{empForm.controls.empskills.controls[i].get('skillslanguage').value}}</span></label>
+                                            <input type="text" name="empskilllanguage" [id]="'empskilllanguage' + i" class="form-control" formControlName="skillslanguage" required [ngClass]="{'is-invalid': submitted && empForm.controls.empskills.controls[i].get('skillslanguage')?.errors}">
+                                            <div *ngIf="empForm.controls.empskills.controls[i].get('skillslanguage')?.errors && (empForm.controls.empskills.controls[i].get('skillslanguage').dirty || empForm.controls.empskills.controls[i].get('skillslanguage').touched)" class="invalid-feedback">
+                                                <div *ngIf="empForm.controls.empskills.controls[i].get('skillslanguage')?.errors.required">This field is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label class="label mb-1"><strong>Skills Proficiency:</strong>&nbsp;&nbsp; <span>{{empForm.controls.empskills.controls[i].get('skillsProficieny').value}}</span></label>
+                                            <div class="radio-inline" [ngClass]="{'is-invalid': submitted && empForm.controls.empskills.controls[i].get('skillsProficieny')?.errors}">
+                                                <input type="radio" value="Expert" formControlName="skillsProficieny" [id]="'skillexpert' + i"><label class="radio-label" [for]="'skillexpert' + i">Expert</label>
+                                                <input type="radio" value="Very Good" formControlName="skillsProficieny" [id]="'skillvGood' + i"><label class="radio-label" [for]="'skillvGood' + i">Very Good</label>
+                                                <input type="radio" value="Good" formControlName="skillsProficieny" [id]="'skillGood' + i"><label class="radio-label" [for]="'skillGood' + i">Good</label>
+                                                <input type="radio" value="Average" formControlName="skillsProficieny" [id]="'skillAvg' + i"><label class="radio-label" [for]="'skillAvg' + i">Average</label>
+                                            </div>
+                                            <div *ngIf="empForm.controls.empskills.controls[i].get('skillsProficieny')?.errors && submitted" class="invalid-feedback">
+                                                <div *ngIf="empForm.controls.empskills.controls[i].get('skillsProficieny')?.errors.required">
+                                                    This field is required.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" (ngSubmit)="onSubmit()" class="btn btn-primary mr-2">Submit</button>
+            <button type="button" class="btn btn-secondary mr-2" (click)="onsetValueClick()">Set Value</button>
+            <button type="button" class="btn btn-secondary mr-2" (click)="onpatchValueClick()">Patch Value</button>
+            <button type="button" class="btn btn-secondary mr-2" (click)="resetFormOnClick()">Reset</button>
+            <button type="button" class="btn btn-secondary mr-2" (click)="addSkills()">Add Skills</button>
+            <button type="button" class="btn btn-secondary" (click)="removeSkills()">Remove Skills</button>
+        </div>
+    </div>
+</form>

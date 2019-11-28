@@ -1,0 +1,29 @@
+.mainContainer {
+   width: 100%;
+   @include calc( min-height, '100vh - 110px');
+   margin: 0;
+   padding: 0px 0 40px;
+   .main-title-style {
+        width: 100%;
+        margin: 50px 0 15px;
+        padding: 0;
+        h1 {
+            @extend .pt-sanse-bold;
+            font-size: 24px;
+            line-height: 36px;
+            color: #252525;
+            margin: 0;
+            padding: 0;
+            @extend .text-left;
+        }
+   }
+   p {
+        @extend .pt-sanse-regular;
+        font-size: 16px;
+        line-height: 24px;
+        color: #252525;
+        @extend .text-left;
+        margin: 10px 0 0;
+        padding: 0;
+   }
+}

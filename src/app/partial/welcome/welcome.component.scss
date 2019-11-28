@@ -1,0 +1,43 @@
+@import '../../../assets/styles/vendors/vendors';
+
+// helpers
+@import '../../../assets/styles/helper/function';
+@import '../../../assets/styles/helper/mixins';
+@import '../../../assets/styles/helper/variabls';
+
+// partials
+@import '../../../assets/styles/partial/reset';
+@import '../../../assets/styles/partial/typography.scss';
+@import '../../../assets/styles/partial/placeholder';
+// pages
+@import '../../../assets/styles/pages/global';
+// welcome section
+.welcome-section {
+    width: 100%;
+    margin: 0;
+    padding: 40px 0;
+    h1 {
+        @extend .pt-sanse-bold;
+        font-size: 24px;
+        line-height: 36px;
+        color: $primary-text-color;
+        margin: 15px 0 25px;
+        padding: 0;
+        @extend .text-left;
+    }
+    .image-block {
+        width: 100%;
+        margin: 15px 0 40px;
+        padding: 0;
+        img { width: 100%; outline: 0; }
+    }
+    P {
+        @extend .pt-sanse-regular;
+        font-size: 16px;
+        line-height: 24px;
+        color: #252525;
+        @extend .text-center;
+        margin: 15px 0 0;
+        padding: 0;
+    }
+}

@@ -1,0 +1,15 @@
+.form-group {
+    label {
+        strong {
+            font-weight: bold;
+        }
+    }
+    .form-check {
+        &.is-invalid {
+            &~.invalid-feedback {
+                display: block;
+                color: #dc3545;
+            }
+        }
+    }
+}

@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+// vendors
+@import 'assets/styles/vendors/vendors';
+// helpers
+@import 'assets/styles/helper/function';
+@import 'assets/styles/helper/mixins';
+@import 'assets/styles/helper/variabls';
+// partials
+@import 'assets/styles/partial/reset';
+@import 'assets/styles/partial/typography';
+@import 'assets/styles/partial/placeholder';
+// Components
+@import "assets/styles/components/forms";
+// pages
+@import 'assets/styles/pages/global';

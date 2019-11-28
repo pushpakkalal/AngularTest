@@ -1,0 +1,42 @@
+@import '../../../assets/styles/vendors/vendors';
+// helpers
+@import '../../../assets/styles/helper/function';
+@import '../../../assets/styles/helper/mixins';
+@import '../../../assets/styles/helper/variabls';
+// partials
+@import '../../../assets/styles/partial/reset';
+@import '../../../assets/styles/partial/typography.scss';
+@import '../../../assets/styles/partial/placeholder';
+// pages
+@import '../../../assets/styles/pages/global';
+.header-section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #899b18;
+    .container {
+        overflow: visible;
+    }
+    .inner-header-container {
+        width: 100%;
+        margin: 0;
+        padding: 0 15px;
+        .logo-block {
+            width: 150px;
+            height: 100%;
+            padding: 15px;
+            background-color: #000000;
+            @extend .text-center;
+            a {
+                @extend .pt-sanse-bold;
+                font-size: 24px;
+                line-height: 36px;
+                color: #ffffff;
+                text-transform: uppercase;
+                @include hoverActiveFocus {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import '../../../assets/styles/vendors/vendors';
+
+// helpers
+@import '../../../assets/styles/helper/function';
+@import '../../../assets/styles/helper/mixins';
+@import '../../../assets/styles/helper/variabls';
+
+// partials
+@import '../../../assets/styles/partial/reset';
+@import '../../../assets/styles/partial/typography.scss';
+@import '../../../assets/styles/partial/placeholder';
+
+// pages
+@import '../../../assets/styles/pages/global';
+
+.footer-section {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    background-color: #dddddd;
+    p {
+        @extend .pt-sanse-regular;
+        font-size: 16px;
+        line-height: 24px;
+        color: #252525;
+        @extend .text-center;
+    }
+}

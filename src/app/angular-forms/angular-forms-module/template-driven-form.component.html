@@ -1,0 +1,177 @@
+<form name="form" #empForm="ngForm" [mustMatch]="['password', 'confirmPassword']" novalidate>
+    <div class="card my-5">
+        <div class="card-header">
+            Add Employee: Using template drivan Form example
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="firstName" class="mb-1"><strong>First Name:</strong>{{fnamerefprop.value}}</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required minlength="5" pattern="^[A-Za-z ]+$" [(ngModel)]="firstName" #fnamerefprop="ngModel"  appForbiddenName="bob" [ngClass]="{ 'is-invalid': empForm.submitted && fnamerefprop.invalid }">
+                        <div *ngIf="fnamerefprop.invalid && (fnamerefprop.dirty || fnamerefprop.touched)" class="invalid-feedback">
+                            <div *ngIf="fnamerefprop.errors?.required">First name is required.</div>
+                            <div *ngIf="fnamerefprop.errors?.pattern">First name is invalid.</div>
+                            <div *ngIf="fnamerefprop.errors?.minlength && !fnamerefprop.errors?.pattern && !fnamerefprop.errors?.forbiddenName">Name must be at least 5 characters long.</div>
+                            <div *ngIf="fnamerefprop.errors?.forbiddenName">Name cannot be Bob.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="lastName" class="mb-1"><strong>Last Name:</strong></label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" required minlength="5" pattern="^[A-Za-z ]+$" [(ngModel)]="lastName" #lnamerefprop="ngModel" placeholder="Enter last name" [ngClass]="{'is-invalid': empForm.submitted && lnamerefprop.invalid}">
+                        <div *ngIf="lnamerefprop.invalid && (lnamerefprop.dirty || lnamerefprop.touched)" class="invalid-feedback">
+                            <div *ngIf="lnamerefprop.errors?.required"> Last name is required. </div>
+                            <div *ngIf="lnamerefprop.errors?.pattern"> Last name is invalid. </div>
+                            <div *ngIf="lnamerefprop.errors?.minlength && !lnamerefprop.errors?.pattern">Last name must have at least 5 charecter.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="emailAddress" class="mb-1"><strong>Email:</strong></label>
+                        <input type="email" class="form-control" id="emailAddress" name="emailAddress" placeholder="Enter email address" [(ngModel)]="emailAddress" #emailrefprops="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [ngClass]="{'is-invalid': empForm.submitted && emailrefprops.invalid}"
+                            required email>
+                        <div *ngIf="emailrefprops.invalid && (emailrefprops.dirty || emailrefprops.touched)" class="invalid-feedback">
+                            <div *ngIf="emailrefprops.errors?.required">Email is a required field!</div>
+                            <div *ngIf="emailrefprops.errors?.pattern">This is not a valid Email!!!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="emailAddress2" class="mb-1"><strong>Email:</strong></label>
+                        <input type="email" [email]="emailAddress2 !== ''" class="form-control" id="emailAddress2" name="emailAddress2" placeholder="Enter email address" [(ngModel)]="emailAddress2" #emailrefprops2="ngModel" [ngClass]="{'is-invalid': empForm.submitted && emailrefprops2.invalid}"
+                            required email>
+                        <div *ngIf="emailrefprops2.invalid && (emailrefprops2.dirty || emailrefprops2.touched)" class="invalid-feedback">
+                            <div *ngIf="emailrefprops2.errors?.required">Email is a required field!</div>
+                            <div *ngIf="emailrefprops2.errors?.email">This is not a valid Email!!!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="phoneNumber" class="mb-1"><strong>Phone:</strong></label>
+                        <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" pattern="^((\\+91-?)|0)?[0-9]{10}$" placeholder="Enter phone number" maxlength="12" minlength="10" [(ngModel)]="phoneNumber" #phonerefprops="ngModel" [ngClass]="{'is-invalid': empForm.submitted && phonerefprops.invalid}"
+                            required>
+                        <div *ngIf="phonerefprops.invalid && (phonerefprops.dirty || phonerefprops.touched)" class="invalid-feedback">
+                            <div *ngIf="phonerefprops.errors?.required">Phone number is required</div>
+                            <div *ngIf="phonerefprops.errors?.pattern">Phone number is invalid</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="empCountry" class="mb-1"><strong>Country:</strong></label>
+                        <select class="form-control" id="empCountry" name="empCountry" [(ngModel)]="empCountry" #empCountryrefprops="ngModel" [ngClass]="{'is-invalid': empForm.submitted && empCountryrefprops.invalid}" required>
+                            <option [ngValue]="null">Choose Country</option>
+                            <option>country 1</option>
+                            <option>country 2</option>
+                            <option>country 3</option>
+                            <option>country 4</option>
+                            <option>country 5</option>
+                        </select>
+                        <div *ngIf="empCountryrefprops.invalid && empForm.submitted" class="invalid-feedback">
+                            <div *ngIf="empCountryrefprops.errors?.required">Country name is required!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="empState" class="mb-1"><strong>State:</strong></label>
+                        <select class="form-control" id="empState" name="empState" [(ngModel)]="empState" #empStaterefProp="ngModel" [ngClass]="{'is-invalid':empForm.submitted && empStaterefProp.invalid}" required>
+                            <option [ngValue]="null">Choose Satate</option>
+                            <option>state1</option>
+                            <option>state2</option>
+                            <option>state3</option>
+                            <option>state4</option>
+                            <option>state5</option>
+                        </select>
+                        <div *ngIf="empStaterefProp.invalid && empForm.submitted" class="invalid-feedback">
+                            <div *ngIf="empStaterefProp.errors?.required">
+                                State field is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label class="mb-1 mr-3"><strong>Gender:</strong></label>
+                        <div class="form-check form-check-inline" [ngClass]="{'is-invalid': empForm.submitted && genderrefProps.invalid}">
+                            <input class="form-check-input" type="radio" value="Male" id="gendermale" [(ngModel)]="gender" #genderrefProps="ngModel" name="gender" required>
+                            <label class="form-check-label" for="gendermale">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline" [ngClass]="{'is-invalid': empForm.submitted && genderrefProps.invalid}">
+                            <input class="form-check-input" type="radio" value="Female" id="genderfemale" [(ngModel)]="gender" #genderrefProps="ngModel" name="gender" required>
+                            <label class="form-check-label" for="genderfemale">Female</label>
+                        </div>
+                        <div *ngIf="genderrefProps.invalid && (genderrefProps.pristine || genderrefProps.touched)" class="invalid-feedback">
+                            <div *ngIf="genderrefProps.errors?.required">
+                                Gender is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label class="mb-1 mr-3"><strong>Languages:</strong></label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="inlineCheckbox1" [(ngModel)]="inlineCheckbox1" #checkrefprop="ngModel" required>
+                            <label class="form-check-label" for="inlineCheckbox1">English</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="inlineCheckbox2" [(ngModel)]="inlineCheckbox2" #checkrefprop="ngModel" required>
+                            <label class="form-check-label" for="inlineCheckbox2">Hindi</label>
+                        </div>
+                        <div class="form-check form-check-inline" [ngClass]="{'is-invalid': empForm.submitted && checkrefprop.invalid}">
+                            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="inlineCheckbox3" [(ngModel)]="inlineCheckbox3" #checkrefprop="ngModel" required>
+                            <label class="form-check-label" for="inlineCheckbox3">Gujrati</label>
+                        </div>
+                        <div *ngIf="empForm.submitted && checkrefprop.invalid" class="invalid-feedback">
+                            <div *ngIf="checkrefprop.errors?.required">
+                                Languages is required.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="password" class="mb-1"><strong>Password</strong></label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" #passwordrefprops="ngModel" [ngClass]="{ 'is-invalid': empForm.submitted && passwordrefprops.invalid }" required minlength="8"
+                        />
+                        <div *ngIf="empForm.submitted && passwordrefprops.invalid" class="invalid-feedback">
+                            <div *ngIf="passwordrefprops.errors?.required">Password is required</div>
+                            <div *ngIf="passwordrefprops.errors?.pattern">Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters</div>
+                            <div *ngIf="passwordrefprops.errors?.minlength && !passwordrefprops.errors?.pattern">Password must be at least 8 characters</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="confirmPassword" class="mb-1"><strong>Confirm Password</strong></label>
+                        <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="confirmPassword" #confirmPasswordrefprops="ngModel" [ngClass]="{ 'is-invalid': empForm.submitted && confirmPasswordrefprops.invalid }" required />
+                        <div *ngIf="empForm.submitted && confirmPasswordrefprops.invalid" class="invalid-feedback">
+                            <div *ngIf="confirmPasswordrefprops.errors?.required">Confirm Password is required</div>
+                            <div *ngIf="confirmPasswordrefprops.errors?.mustMatch">Passwords must match</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button type="submit" name="" class="btn btn-primary mr-2">Save</button>
+            <button type="button" (click)="setDefaultValues()" class="btn btn-secondary mr-2">Set Default</button>
+            <button type="button" (click)="resetForm(empForm)" class="btn btn-secondary">Reset</button>
+        </div>
+    </div>
+</form>
