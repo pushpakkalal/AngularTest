@@ -30,6 +30,7 @@ const routes: Routes = [
     },
     { path: 'forms', loadChildren: () => import('./angular-forms/angular-forms-module/angular-forms-module.module').then(m => m.AngularFormsModuleModule) },
     { path: 'employee', loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule) },
+    { path: 'employeeapi', loadChildren: () => import('./employee2/employee2.module').then(m => m.Employee2Module) },
     {
         path: '',
         redirectTo: '/home',

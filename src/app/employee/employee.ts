@@ -1,3 +1,4 @@
+import { IState } from './IState';
 export interface Employee {
     id: number;
     firstName: string;
@@ -10,7 +11,4 @@ export interface Employee {
     joinDate: string;
     rating: number
 }
-export interface IState {
-    abbreviation: string;
-    name: string;
-}
+

@@ -15,8 +15,20 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>{{employee.id}}</td>
+        <tr *ngIf="employees.length==0">
+            <td colspan="10" class="text-center"> No Records Found... </td>
+        </tr>
+        <tr *ngFor="let emp of employees">
+            <td>{{emp.id}}</td>
+            <td>{{emp.firstName | uppercase }}</td>
+            <td>{{emp.lastName | lowercase }}</td>
+            <td>{{emp.gender}}</td>
+            <td>{{emp.address}}</td>
+            <td>{{emp.city}}</td>
+            <td>{{emp.state.abbreviation}}, {{emp.state.name}}</td>
+            <td>{{emp.salary|currency:'INR':true:'1.2-2'}}</td>
+            <td>{{emp.joinDate | date:"MM/dd/yy"}}</td>
+            <td>{{emp.rating}}</td>
         </tr>
     </tbody>
 </table>
