@@ -12,6 +12,9 @@ import { TermsAndConditionComponent } from './cms/terms-and-condition/terms-and-
 import { PageNotFoundComponent } from './partial/page-not-found/page-not-found.component';
 import { WelcomeComponent } from './partial/welcome/welcome.component';
 import { CommonModule } from '@angular/common';
+import {ParentComponent}  from './inputOutput/parent.component';
+import {ChildOneComponent}  from './inputOutput/childone.component';
+import {ChildTwoComponent}  from './inputOutput/childtwo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,9 @@ import { CommonModule } from '@angular/common';
     TermsAndConditionComponent,
     PageNotFoundComponent,
     WelcomeComponent,
+    ParentComponent,
+    ChildOneComponent,
+    ChildTwoComponent
   ],
   imports: [
     CommonModule,

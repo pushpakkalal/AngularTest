@@ -8,9 +8,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngIf="employees.length==0">
+        <!-- <tr *ngIf="employees.length==0">
             <td colspan="10" class="text-center"> No Records Found... </td>
-        </tr>
+        </tr> -->
         <tr *ngFor="let emp of employees">
             <td>{{emp.employee_name | uppercase}}</td>
             <td>{{emp.employee_salary}}</td>

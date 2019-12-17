@@ -5,6 +5,8 @@ import { PrivacyPolicyComponent } from './cms/privacy-policy/privacy-policy.comp
 import { TermsAndConditionComponent } from './cms/terms-and-condition/terms-and-condition.component';
 import { PageNotFoundComponent } from './partial/page-not-found/page-not-found.component';
 import { WelcomeComponent } from './partial/welcome/welcome.component';
+import { ParentComponent } from './inputOutput/parent.component';
+
 
 const routes: Routes = [
     {
@@ -19,6 +21,10 @@ const routes: Routes = [
         path: 'privacy-policy',
         component: PrivacyPolicyComponent,
         data: { title: 'Heroes List' }
+    },
+    {
+        path: 'input-output',
+        component: ParentComponent
     },
     {
         path: '404',
